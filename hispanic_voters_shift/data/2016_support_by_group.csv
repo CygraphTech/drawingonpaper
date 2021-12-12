@@ -1,0 +1,33 @@
+pid3,gender,race,educ,count,total
+Democrat,Female,Asian or other,College,8,12
+Democrat,Female,Asian or other,Non-college,3,7
+Democrat,Female,Black,College,31,32
+Democrat,Female,Black,Non-college,19,20
+Democrat,Female,Hispanic,College,16,22
+Democrat,Female,Hispanic,Non-college,15,17
+Democrat,Female,White,College,82,157
+Democrat,Female,White,Non-college,42,90
+Democrat,Male,Asian or other,College,6,10
+Democrat,Male,Asian or other,Non-college,5,7
+Democrat,Male,Black,College,15,18
+Democrat,Male,Black,Non-college,15,19
+Democrat,Male,Hispanic,College,4,6
+Democrat,Male,Hispanic,Non-college,20,23
+Democrat,Male,White,College,56,108
+Democrat,Male,White,Non-college,34,71
+Republican,Female,Asian or other,College,4,12
+Republican,Female,Asian or other,Non-college,4,7
+Republican,Female,Black,College,1,32
+Republican,Female,Black,Non-college,1,20
+Republican,Female,Hispanic,College,6,22
+Republican,Female,Hispanic,Non-college,2,17
+Republican,Female,White,College,75,157
+Republican,Female,White,Non-college,48,90
+Republican,Male,Asian or other,College,4,10
+Republican,Male,Asian or other,Non-college,2,7
+Republican,Male,Black,College,3,18
+Republican,Male,Black,Non-college,4,19
+Republican,Male,Hispanic,College,2,6
+Republican,Male,Hispanic,Non-college,3,23
+Republican,Male,White,College,52,108
+Republican,Male,White,Non-college,37,71
