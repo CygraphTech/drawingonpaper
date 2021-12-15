@@ -3,6 +3,7 @@ library(dplyr)
 library(ggplot2)
 library(stringr)
 library(readr)
+library(reshape)
 
 results_by_county <- read.csv("./data/election_results.csv", stringsAsFactors = FALSE) %>%
   drop_na()
@@ -29,11 +30,8 @@ election_results_by_county_2016_2020 <- election_results_by_county_2016_2020 %>%
          rep_v = readr::parse_number(rep_v),
          rep_s = readr::parse_number(rep_s))
 
-library(reshape)
 results_m <- election_results_by_county_2016_2020
   melt(id.vars=c("county"), measure.vars=c("rep_s", "year"))
-
-reshape(results_m, idvar = "county", direction="wide")
 
 results_2016 <- results_m %>%
   filter(year == "2016") %>%
@@ -98,8 +96,6 @@ write.csv(population_and_results, "data/population_and_results_2016_2020.csv", r
 # The data for 2016:
 poll <- read.csv("data/ANES_Parallel_Study_2016.tab", sep="\t")
 
-poll %>% nrow()
-
 poll_data <- poll %>% 
   dplyr::rename(pol = POSTVOTE_PRESVTWHO) %>%
   filter(pol %in% c(1,2)) %>%
@@ -110,8 +106,6 @@ poll_data <- poll %>%
   mutate(gender = case_when(gender == 1~"Male", gender == 2~"Female")) %>%
   mutate(educ = case_when(educ %in% c(3,4,5,6)~"College", educ %in% c(1,2)~"Non-college")) %>%
   mutate(race = case_when(race == 1~"White", race %in% c(4,5,6,7,8)~"Asian or other", race == 3~"Hispanic", race == 2~"Black"))
-View(poll_data %>% group_by(pol, gender, race, educ) %>% summarize(total = n()))
-View(poll_data %>% group_by(gender, race) %>% summarize(total = n()))
 
 count_by_race <- poll_data %>% 
   group_by(race) %>%
@@ -142,12 +136,10 @@ poll_group_race_gender <- poll_data %>%
   summarize(count = n()) %>%
   left_join(count_by_race_gender, by = c('gender', 'race')) %>%
   mutate(support = count / total)
-View(poll_group_race)
 
 write.csv(poll_group_race, "data/2016_by_race.csv", row.names=FALSE)
 write.csv(poll_group_race_gender, "data/2016_by_race_gender.csv", row.names=FALSE)
 write.csv(poll_group_gender_race_educ, "data/2016_by_gender_race_educ.csv", row.names=FALSE)
-
 
 
 ####################
@@ -160,5 +152,4 @@ gender_and_race <- detailed_tables[12:18,]
 results_by_category <- read.csv("data/results_by_category.csv") %>%
   mutate(margin = rep_s_20 - rep_s_16) %>%
   select(c(category, margin, rep_s_20, rep_s_16)) %>%
-  arrange(desc(margin)) %>%
-  View()
+  arrange(desc(margin))
