@@ -1,0 +1,24 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json",
+    "title": {
+        "text": "In the past three decades, deforestation was massive",
+        "subtitle": "World-wide deforestation culminated in the 80s"
+    },
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "decade",
+            "type": "temporal"
+        },
+        "y": {
+            "field": "loss",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "view": {"height": 300, "width": 600},
+        "title": {
+            "align": "left"
+        }
+    }
+}

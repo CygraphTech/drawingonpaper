@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLRMHWP0F9"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-DLRMHWP0F9');
+        </script>
+
+    <meta name="author" content="Mathieu Guglielmino - CyGraph">
+    <meta name="title" content="Deforestation between 1700 and today">
+    <meta name="description" content="Visualization of the deforestation between 1700 and 2020">
+    <meta name="keywords" content="data, visualization, visualisation, data visualization, data visualisation, information, information visualization, information visualisation, dataviz, datavis, infoviz, infovis">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/favicon-16x16.png">
+
+    <!-- Social media -->
+    <meta name="twitter:site" content="@Guglimat">
+    <meta name="twitter:creator" content="@Guglimat">
+    <meta name="twitter:title" content="Deforestation has been a massive phenomenon in the last three decades">
+    <title>Deforestation has been a massive phenomenon in the last three decades</title>
+
+    <!-- Import d3 -->
+    <script src="https://unpkg.com/d3@6.7.0/dist/d3.min.js"></script>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://unpkg.com/vega@5.21.0/build/vega.min.js"></script>
+    <script src="https://unpkg.com/vega-lite@4.17.0/build/vega-lite.min.js"></script>
+    <!-- Import vega-embed -->
+    <script src="https://unpkg.com/vega-embed@6.20.5/build/vega-embed.min.js"></script>
+</head>
+
+<body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+        d3.csv('data/data_by_decade.csv')
+            .then(function (data) {
+                data.forEach(d => {
+                    d['loss'] = +d.loss;
+                })
+
+                d3.json("./deforestation.vega")
+                    .then(function(spec) {
+                        spec.data = {
+                            "name": "deforestation",
+                            "values": data
+                        }
+
+                        vegaEmbed('#vis', spec, {config: "./config.json"}).then(function (result) {
+                        }).catch(console.error);
+                    })
+                
+            })
+    </script>
+</body>
+
+</html>
