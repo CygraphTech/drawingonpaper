@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLRMHWP0F9"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-DLRMHWP0F9');
+        </script>
+
+    <meta name="author" content="Mathieu Guglielmino - CyGraph">
+    <meta name="title" content="In 2020, the Hispanic vote shifted towards Trump">
+    <meta name="description" content="Vega visualization on the Hispanic vote between 2016 and 2020">
+    <meta name="keywords" content="data, visualization, visualisation, data visualization, data visualisation, information, information visualization, information visualisation, dataviz, datavis, infoviz, infovis">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/favicon-16x16.png">
+
+    <!-- Social media -->
+    <meta name="twitter:site" content="@Guglimat">
+    <meta name="twitter:creator" content="@Guglimat">
+    <meta name="twitter:title" content="In 2020, the Hispanic vote shifted towards Trump">
+    <title>In 2020, the Hispanic vote shifted towards Trump</title>
+
+    <!-- Import d3 -->
+    <script src="https://unpkg.com/d3@6.7.0/dist/d3.min.js"></script>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://unpkg.com/vega@5.21.0/build/vega.min.js"></script>
+    <script src="https://unpkg.com/vega-lite@4.17.0/build/vega-lite.min.js"></script>
+    <!-- Import vega-embed -->
+    <script src="https://unpkg.com/vega-embed@6.20.5/build/vega-embed.min.js"></script>
+</head>
+
+<body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+        d3.csv('data/population_and_results_2016_2020.csv')
+            .then(function (data) {
+                data.forEach(d => {
+                    d['State'] = d.state;
+                    d['County'] = d.NAME;
+                    d['Proportion of Hispanic people in total population'] = +d.density;
+                    d['Change in Trump vote share (% pts)'] =  +d.margin;
+                    d['Total population'] = +d.pop;
+                    d['Hispanic population'] = +d.pop_hispanic;
+                    d.rep_s_16 = +d.rep_s_16;
+                    d.dem_s_16 = +d.dem_s_16;
+                    d.rep_s_20 = +d.rep_s_20;
+                    d.dem_s_20 = +d.dem_s_20;
+
+                })
+
+                d3.json("./hispanic_shift.vega")
+                    .then(function(spec) {
+                        spec.data = {
+                            "values": data.filter(d => ["Arizona", "Florida", "Texas"].includes(d.state))
+                        }
+
+                        vegaEmbed('#vis', spec, {config: "./config.json"}).then(function (result) {
+                        }).catch(console.error);
+                    })
+                
+            })
+    </script>
+</body>
+
+</html>

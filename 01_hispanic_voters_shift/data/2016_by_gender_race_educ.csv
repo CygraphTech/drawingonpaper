@@ -1,0 +1,30 @@
+"pol","gender","race","educ","count","total","support"
+"Democrat","Female","Asian or other","College",5,9,0.555555555555556
+"Democrat","Female","Asian or other","Non-college",1,3,0.333333333333333
+"Democrat","Female","Black","College",21,21,1
+"Democrat","Female","Black","Non-college",11,12,0.916666666666667
+"Democrat","Female","Hispanic","College",9,11,0.818181818181818
+"Democrat","Female","Hispanic","Non-college",5,8,0.625
+"Democrat","Female","White","College",78,154,0.506493506493506
+"Democrat","Female","White","Non-college",17,68,0.25
+"Democrat","Male","Asian or other","College",4,15,0.266666666666667
+"Democrat","Male","Black","College",8,8,1
+"Democrat","Male","Black","Non-college",10,14,0.714285714285714
+"Democrat","Male","Hispanic","College",3,8,0.375
+"Democrat","Male","Hispanic","Non-college",4,7,0.571428571428571
+"Democrat","Male","White","College",61,142,0.429577464788732
+"Democrat","Male","White","Non-college",17,76,0.223684210526316
+"Republican","Female","Asian or other","College",4,9,0.444444444444444
+"Republican","Female","Asian or other","Non-college",2,3,0.666666666666667
+"Republican","Female","Black","Non-college",1,12,0.0833333333333333
+"Republican","Female","Hispanic","College",2,11,0.181818181818182
+"Republican","Female","Hispanic","Non-college",3,8,0.375
+"Republican","Female","White","College",76,154,0.493506493506494
+"Republican","Female","White","Non-college",51,68,0.75
+"Republican","Male","Asian or other","College",11,15,0.733333333333333
+"Republican","Male","Asian or other","Non-college",2,2,1
+"Republican","Male","Black","Non-college",4,14,0.285714285714286
+"Republican","Male","Hispanic","College",5,8,0.625
+"Republican","Male","Hispanic","Non-college",3,7,0.428571428571429
+"Republican","Male","White","College",81,142,0.570422535211268
+"Republican","Male","White","Non-college",59,76,0.776315789473684
